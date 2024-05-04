@@ -8,17 +8,21 @@ function App() {
     0, 1, 2, 3, 4, 5, 6, 7, 8,
   ]);
   const [title, setTitle] = useState<string>("Крестики-Нолики");
+  const [access, setAccess] = useState(true);
 
   function reset() {
     setBoard([0, 1, 2, 3, 4, 5, 6, 7, 8]);
     setTitle("Крестики-Нолики");
+    setAccess(true);
   }
 
   const handleSetValue = (index: number, player: string) => {
-    if (board[index] !== "P" && board[index] !== "C") {
+    if (board[index] !== "P" && board[index] !== "C" && access) {
       board[index] = player;
       setBoard([...board]);
-      player === "P" && Move(board, handleSetValue, reset, setTitle);
+      setAccess(false);
+      player === "P" && Move(board, handleSetValue, reset, setTitle, setAccess);
+      setAccess(true);
     }
   };
 

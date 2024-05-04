@@ -8,7 +8,8 @@ function Move(
   board: IBoard,
   handleSetValue: (index: number, player: string) => void,
   reset: () => void,
-  setTitle: (newValue: string) => void
+  setTitle: (newValue: string) => void,
+  setAccess: (newValue: boolean) => void
 ) {
   round++;
   // console.log(board)
@@ -17,8 +18,10 @@ function Move(
       round = 0;
       reset();
     }, 2500);
+    setAccess(false);
     setTitle("Победа!");
   } else if (round === 9) {
+    setAccess(false);
     setTitle("Ничья!");
     setTimeout(() => {
       round = 0;
@@ -31,6 +34,7 @@ function Move(
       round++;
       // console.log(index, round);
       if (Winning(board, aiPlayer)) {
+        setAccess(false);
         setTitle("Поражение!");
         setTimeout(() => {
           round = 0;
@@ -41,6 +45,7 @@ function Move(
           round = 0;
           reset();
         }, 2500);
+        setAccess(false);
         setTitle("Ничья!");
       }
     }, 400);

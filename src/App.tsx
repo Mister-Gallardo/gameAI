@@ -16,11 +16,9 @@ function App() {
 
   const handleSetValue = (index: number, player: string) => {
     if (board[index] !== "P" && board[index] !== "C") {
-      // setTimeout(() => {
       board[index] = player;
       setBoard([...board]);
       player === "P" && Move(board, handleSetValue, reset, setTitle);
-      // }, 100);
     }
   };
 

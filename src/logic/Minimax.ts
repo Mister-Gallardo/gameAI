@@ -26,22 +26,24 @@ function Move(
     }, 2500);
   } else {
     const index: number = Minimax(board, aiPlayer)?.index as number;
-    handleSetValue(index, aiPlayer);
-    round++;
-    // console.log(index, round);
-    if (Winning(board, aiPlayer)) {
-      setTitle("Поражение!");
-      setTimeout(() => {
-        round = 0;
-        reset();
-      }, 2500);
-    } else if (round === 9) {
-      setTimeout(() => {
-        round = 0;
-        reset();
-      }, 2500);
-      setTitle("Ничья!");
-    }
+    setTimeout(() => {
+      handleSetValue(index, aiPlayer);
+      round++;
+      // console.log(index, round);
+      if (Winning(board, aiPlayer)) {
+        setTitle("Поражение!");
+        setTimeout(() => {
+          round = 0;
+          reset();
+        }, 2500);
+      } else if (round === 9) {
+        setTimeout(() => {
+          round = 0;
+          reset();
+        }, 2500);
+        setTitle("Ничья!");
+      }
+    }, 400);
   }
 }
 
